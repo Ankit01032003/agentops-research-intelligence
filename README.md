@@ -20,16 +20,29 @@ An AI-powered research application combining LangGraph workflows, LLM-based plan
 
 ## Architecture
 
-**High-level architecture:**
+The application follows a multi-agent research workflow:
 
-Streamlit UI → FastAPI → LangGraph Workflow
+```mermaid
+flowchart TD
+    A[User Research Query] --> B[Streamlit UI]
+    B --> C[FastAPI Backend]
+    C --> D[LangGraph Workflow]
+    D --> E[Planner Agent]
+    E --> F[Researcher Agent]
+    F --> G[Web Search - Tavily]
+    F --> H[Document Retrieval - ChromaDB]
+    G --> I[Evidence Verifier]
+    H --> I
+    I --> J[Report Generator]
+    J --> K[Research Report]
+```
 
-The LangGraph workflow coordinates four stages:
+### Workflow Components
 
-1. **Planner:** Breaks the research question into actionable tasks.
-2. **Researcher:** Collects information from web search and uploaded documents.
-3. **Evidence Verifier:** Reviews the collected evidence.
-4. **Report Generator:** Produces a structured research report.
+1. **Planner:** Breaks the research question into tasks.
+2. **Researcher:** Collects information from web search and documents.
+3. **Evidence Verifier:** Reviews collected evidence.
+4. **Report Generator:** Produces the final research report.
 
 The researcher combines web search results with relevant passages retrieved from the document knowledge base.
 
