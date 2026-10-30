@@ -1,31 +1,48 @@
-
 # AgentOps Research Intelligence
 
-An AI research application combining a LangGraph workflow, LLM-powered planning,
-web search, document RAG, evidence review, and report generation.
+An AI-powered research application combining LangGraph workflows, LLM-based planning, web search, document RAG, evidence verification, and automated report generation.
+
+## Dashboard Preview
+
+![AgentOps Research Intelligence Dashboard](screenshots.png)
 
 ## Features
 
-- Research planning with an LLM
+- LLM-powered research planning
 - Web search using Tavily
-- PDF, TXT, and Markdown ingestion
-- Semantic document retrieval with ChromaDB
-- Evidence review and report generation
+- PDF, TXT, and Markdown document ingestion
+- Semantic document retrieval using ChromaDB
+- Evidence review and automated report generation
+- Multi-step orchestration using LangGraph
 - FastAPI backend
-- Streamlit user interface
+- Interactive Streamlit frontend
 - Pytest API tests
 
 ## Architecture
 
-Streamlit UI -> FastAPI -> LangGraph workflow
+**High-level architecture:**
 
-The workflow coordinates:
-1. Planner
-2. Researcher
-3. Evidence verifier
-4. Report generator
+Streamlit UI → FastAPI → LangGraph Workflow
 
-The researcher combines web search results and retrieved document passages.
+The LangGraph workflow coordinates four stages:
+
+1. **Planner:** Breaks the research question into actionable tasks.
+2. **Researcher:** Collects information from web search and uploaded documents.
+3. **Evidence Verifier:** Reviews the collected evidence.
+4. **Report Generator:** Produces a structured research report.
+
+The researcher combines web search results with relevant passages retrieved from the document knowledge base.
+
+## Technology Stack
+
+- **Language:** Python
+- **LLM:** OpenAI API
+- **Agent Orchestration:** LangGraph
+- **Backend:** FastAPI
+- **Frontend:** Streamlit
+- **Vector Database:** ChromaDB
+- **Web Search:** Tavily
+- **Testing:** Pytest
 
 ## Requirements
 
@@ -33,42 +50,72 @@ The researcher combines web search results and retrieved document passages.
 - OpenAI API key
 - Tavily API key for live web search
 
-## Setup
+## Installation and Setup
 
-Create and activate a virtual environment, then install dependencies:
+Clone the repository:
 
-    python -m venv .venv
-    python -m pip install -r requirements.txt
+```bash
+git clone https://github.com/Ankit01032003/agentops-research-intelligence.git
+cd agentops-research-intelligence
+```
 
-Create a `.env` file from `.env.example` and configure your keys.
+Create a virtual environment:
 
-## Run the API
+```bash
+python -m venv .venv
+```
 
-    uvicorn app.main:app --reload
+Install dependencies:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Create a `.env` file using `.env.example` and configure the required API keys.
+
+## Run the Backend
+
+```bash
+uvicorn app.main:app --reload
+```
 
 API documentation:
 
-    http://127.0.0.1:8000/docs
+http://127.0.0.1:8000/docs
 
-## Run the frontend
+## Run the Frontend
 
-Open a second terminal, activate the same virtual environment, and run:
+Open a second terminal and run:
 
-    streamlit run frontend/streamlit_app.py
+```bash
+streamlit run frontend/streamlit_app.py
+```
 
-## Run tests
+Open the local URL displayed in your terminal.
 
-    pytest -q
+## Run Tests
 
-## Limitations
+```bash
+pytest -q
+```
 
-- The workflow currently follows a fixed graph.
-- Evidence review uses an LLM and is not a guarantee of truth.
-- Document retrieval uses basic semantic search.
-- The application is intended for local development, not unrestricted public use.
-- Authentication, persistent run history, advanced evaluation, and production deployment
-  are future improvements.
+## Current Limitations
+
+- The workflow currently follows a predefined LangGraph structure.
+- LLM-based evidence review does not guarantee factual accuracy.
+- Document retrieval currently uses basic semantic search.
+- The application is intended for local development rather than unrestricted public access.
+- Authentication, advanced evaluation, and production deployment can be further improved.
 
 ## Security
 
-Keep API keys in `.env`. Never commit credentials or expose unrestricted tools to an LLM.
+- Store API keys in `.env`.
+- Never commit credentials or secrets to GitHub.
+- Avoid exposing unrestricted tools to LLM agents.
+- Validate external inputs before processing them.
+
+## Author
+
+**Ankit Sharma**
+
+GitHub: [Ankit01032003](https://github.com/Ankit01032003)
