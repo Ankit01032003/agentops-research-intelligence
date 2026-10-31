@@ -86,6 +86,34 @@ python -m pip install -r requirements.txt
 
 Create a `.env` file using `.env.example` and configure the required API keys.
 
+## Run with Docker Compose
+
+1. Copy `.env.example` to `.env`.
+2. Add your OpenAI API key. Add a Tavily key to enable live web search.
+3. Start both services:
+
+```bash
+docker compose up --build -d
+```
+
+- Streamlit dashboard: http://localhost:8501
+- FastAPI docs: http://localhost:8000/docs
+- Health check: http://localhost:8000/health
+
+View logs:
+
+```bash
+docker compose logs -f
+```
+
+Stop services:
+
+```bash
+docker compose down
+```
+
+Research history and ChromaDB data persist in the Docker volume `agentops_data`. To remove stored data as well, run `docker compose down -v`.
+
 ## Run the Backend
 
 ```bash
